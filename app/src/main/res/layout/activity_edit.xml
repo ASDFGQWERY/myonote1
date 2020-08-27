@@ -13,22 +13,29 @@
 
     <Button
         android:id="@+id/cls"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Close"
+        android:background="@drawable/selector"
+        android:drawableStart="@android:drawable/ic_menu_close_clear_cancel"
+        android:text="@string/close"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/sav"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-
-        android:text="Save"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/selector"
+        android:drawableStart="@android:drawable/ic_menu_save"
+        android:text="@string/save"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toStartOf="@+id/cls"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +57,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Edit"
+        android:text="@string/edit"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

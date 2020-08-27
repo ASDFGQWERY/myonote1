@@ -120,7 +120,6 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
             super(itemView);
             this.data1 = data1;
             this.view = itemView;
-            this.uuid = itemView.findViewById(R.id.uuid);
             this.body = itemView.findViewById(R.id.body);
             this.dbtime = itemView.findViewById(R.id.dbtime);
 

@@ -41,14 +41,6 @@ public class EditActivity extends AppCompatActivity {
         idtemp = intent.getStringExtra("uuid");
 
 
-
-        if(getIntent().hasExtra("uuid")){
-
-            idtemp = getIntent().getStringExtra("uuid");
-            Toast.makeText(this, String.format("%s",idtemp), Toast.LENGTH_SHORT).show();
-        }
-
-
         SQLiteDatabase db = helper.getWritableDatabase();
         try {
             Cursor c = db.rawQuery("select body from NEKO6_TABLE where uuid ='" + idtemp + "'", null);
