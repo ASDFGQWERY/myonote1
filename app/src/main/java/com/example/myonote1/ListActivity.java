@@ -72,6 +72,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         });
 
 
+
         //Fabボタン処理
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +83,8 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
             }
         });
+
+
 
 
         //初期読み込みインド人
@@ -175,7 +178,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         final NekoAdapter adapter = new NekoAdapter(data1, this);
         //adapter.notifyItemRangeChanged(0,adapter.getItemCount());
         //adapter.notifyDataSetChanged();
-        //adapter.notifyItemChanged(position);
+        adapter.notifyItemChanged(position);
         recyclerView.setAdapter(adapter);
         recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
 

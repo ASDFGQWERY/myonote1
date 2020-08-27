@@ -19,17 +19,15 @@
             android:layout_height="match_parent">
 
 
-
             <TextView
                 android:id="@+id/body"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="30dp"
+
                 android:ellipsize="end"
                 android:singleLine="true"
-
-                android:layout_marginStart="70dp"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toEndOf="@+id/favBtn"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,13 +57,20 @@
                 android:id="@+id/favBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:clickable="false"
                 android:background="@mipmap/ic_l1_foreground"
+                android:clickable="false"
 
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
+
+            <TextView
+                android:id="@+id/favStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteY="3dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

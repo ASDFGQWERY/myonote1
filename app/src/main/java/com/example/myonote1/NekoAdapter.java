@@ -64,7 +64,7 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
     public void onBindViewHolder(@NonNull NekoViewHolder holder, int position) {
         NekoItem nekoItem = data1.get(position);
         holder.body.setText(this.data1.get(position).getBody());
-
+        holder.fav_status.setText(this.data1.get(position).getFavStatus());
         holder.dbtime.setText(this.data1.get(position).getDbtime());
         holder.mDeleteImage.setBackgroundResource(R.mipmap.ic_d1_foreground);
 
@@ -122,7 +122,7 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
             this.view = itemView;
             this.body = itemView.findViewById(R.id.body);
             this.dbtime = itemView.findViewById(R.id.dbtime);
-
+            this.fav_status = itemView.findViewById(R.id.favStatus);
 
 
             cardView = itemView.findViewById(R.id.cdv);

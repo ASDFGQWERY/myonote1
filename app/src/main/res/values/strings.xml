@@ -1,13 +1,14 @@
 <resources>
     <string name="app_name">myonote1</string>
 
-    <string name="question"> Are you sure to delete this note? </string>
+    <string name="question"> Are you sure to delete this? </string>
     <string name="yes"> Yes </string>
     <string name="no"> No </string>
+
     <string name="new1"> NEW </string>
     <string name="save"> SAVE </string>
     <string name="close"> CLOSE </string>
-    <string name="edit">EDIT </string>
-    <string name="close_app">CLOSE APP</string>
+    <string name="edit"> EDIT </string>
+    <string name="close_app"> CLOSE APP </string>
 
 </resources>
