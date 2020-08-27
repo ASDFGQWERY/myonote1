@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">myonote1</string>
+
+    <string name="question"> Are you sure to delete this note? </string>
+    <string name="yes"> Yes </string>
+    <string name="no"> No </string>
+    <string name="new1"> NEW </string>
+
+</resources>

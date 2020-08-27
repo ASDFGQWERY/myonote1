@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="baseGreen">#8dc26f</color>
+    <color name="FabOrange">#ffa500</color>
+    <color name="FabYellow">#ffffe0</color>
+
+    <color name="startGradientColor">#76b852</color>
+    <color name="endGradientColor">#8dc26f</color>
+
+
+</resources>
