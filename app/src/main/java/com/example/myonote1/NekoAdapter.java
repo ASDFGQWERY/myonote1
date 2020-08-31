@@ -2,6 +2,7 @@ package com.example.myonote1;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.util.SparseIntArray;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -48,6 +51,7 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
     }
 
 
+
     @NonNull
     @Override
     public NekoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -67,19 +71,22 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
         holder.fav_status.setText(this.data1.get(position).getFavStatus());
         holder.dbtime.setText(this.data1.get(position).getDbtime());
         holder.mDeleteImage.setBackgroundResource(R.mipmap.ic_d1_foreground);
+        //readCursorData(nekoItem, holder);
 
 
-        int num = Integer.parseInt(this.data1.get(position).getFavStatus());
-        int res_id = IMG_ID.get(num);
-        NekoViewHolder.favBtn.setBackgroundResource(res_id);
-        if (num == 2){
-            NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
-        } else {
-            NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
-        }
-
+            int num = Integer.parseInt(this.data1.get(position).getFavStatus());
+            int res_id = IMG_ID.get(num);
+            NekoViewHolder.favBtn.setBackgroundResource(res_id);
+            if (num == 2) {
+                NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
+            } else {
+                NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
+            }
 
     }
+
+
+
 
     @Override
     public int getItemCount() {
@@ -157,4 +164,39 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
         }
 
     }
+
+    /*
+    private void readCursorData(NekoItem nekoItem, RecyclerView.ViewHolder holder){
+        Cursor cursor = helper.read_all_data(nekoItem.getUuid());
+        //SQLiteDatabase db = FavDBhelper.getReadableDatabase();
+        try {
+            boolean next = cursor.moveToNext();
+            while (next) {
+                String favStatus = cursor.getString(3);
+
+                nekoItem.setFavStatus(favStatus);
+
+                int num = parseInt(nekoItem.getFavStatus());
+
+                if (num == 2) {
+                    NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l2_foreground);
+                    NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
+                } else {
+                    NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l1_foreground);
+                    NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
+                }
+
+                next = cursor.moveToNext();
+
+            }
+        }finally{
+            cursor.close();
+            db.close();
+        }
+
+    }
+
+     */
+
+
 }

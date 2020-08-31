@@ -41,7 +41,7 @@ public class FavDBhelper extends SQLiteOpenHelper {
     }
 
 
-/*
+
     // select all favorite list
     public Cursor select_all_favorite_list(String uuid) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -50,17 +50,12 @@ public class FavDBhelper extends SQLiteOpenHelper {
     }
 
 
-
     // read all data
     public Cursor read_all_data(String uuid) {
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + UUID + "="+uuid+"";
         return db.rawQuery(sql, null,null);
     }
-
- */
-
-
 
 
 

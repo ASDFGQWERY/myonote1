@@ -9,19 +9,14 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.collection.ArraySet;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,8 +25,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 import static com.example.myonote1.FavDBhelper.TABLE_NAME;
-import static com.example.myonote1.NekoAdapter.*;
-import static com.example.myonote1.FavDBhelper.TABLE_NAME;
+import static com.example.myonote1.NekoAdapter.NekoViewHolder;
+import static java.lang.Integer.parseInt;
 
 public class ListActivity extends AppCompatActivity implements RecyclerViewClickInterface {
 
@@ -49,6 +44,8 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
     private String idtemp;
     NekoAdapter.NekoViewHolder holder;
     Context context;
+
+
 
 
     @Override
@@ -122,12 +119,50 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         NekoAdapter adapter = new NekoAdapter(data1, this);
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
+
+
+        //recyclerView.getRecycledViewPool().clear();
+
+        /*
+       try {
+            boolean next = cursor.moveToNext();
+            while (next) {
+                String uuid = cursor.getString(1);
+                String body = cursor.getString(2);
+                String dbtime = cursor.getString(4);
+                String favStatus = cursor.getString(3);
+
+                NekoItem newNote = new NekoItem(uuid, body, dbtime, favStatus);
+                data1.add(newNote);
+
+                int position = 0;
+                int num = parseInt(this.data1.get(position).getFavStatus());
+
+                if (num == 2) {
+                    NekoAdapter.NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l2_foreground);
+                    NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
+                } else {
+                    NekoAdapter.NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l1_foreground);
+                    NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
+                }
+
+                next = cursor.moveToNext();
+
+            }
+        }finally{
+            cursor.close();
+            db.close();
+        }
+
+         */
+
         recyclerView.setAdapter(adapter);
 
 
-
     }
+
+
     //各ボタン処理-------------------------------------------------------------------------------------------
     //Card押下
     @Override
@@ -144,10 +179,12 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
     public void onFavClick4(int position) {
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        //data1.get(position);
+        recyclerView.getRecycledViewPool().clear();
+
+        data1.get(position);
         NekoItem k = data1.get(position);
         //String k = data1.get(3);
-        //NekoViewHolder holder;
+        NekoViewHolder holder;
         int num = Integer.parseInt(this.data1.get(position).getFavStatus());
 
         switch (num){
@@ -156,7 +193,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
                 db.execSQL("update NEKO6_TABLE set favStatus = '2' where uuid = '" + k.getUuid() + "'");
                 k.setFavStatus("2");
                 NekoAdapter.NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l2_foreground);
-                NekoAdapter.NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
+                NekoAdapter.NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
                 db.close();
                 //adapter.notifyDataSetChanged();
                 break;
@@ -166,19 +203,25 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
                 db.execSQL("update NEKO6_TABLE set favStatus = '1' where uuid = '" + k.getUuid() + "'");
                 k.setFavStatus("1");
                 NekoAdapter.NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l1_foreground);
-                NekoAdapter.NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffbb33"));
+                NekoAdapter.NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
                 db.close();
                 //adapter.notifyDataSetChanged();
                 break;
 
         }
 
+        //位置保存
         Parcelable recyclerViewState;
         recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
+
+        //recyclerView.getRecycledViewPool().clear();
+
         final NekoAdapter adapter = new NekoAdapter(data1, this);
+
         //adapter.notifyItemRangeChanged(0,adapter.getItemCount());
         //adapter.notifyDataSetChanged();
-        adapter.notifyItemChanged(position);
+
+        //adapter.notifyItemChanged(position);
         recyclerView.setAdapter(adapter);
         recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
 
@@ -191,7 +234,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
         SQLiteDatabase db = helper.getWritableDatabase();
         data1.get(position);
-        NekoItem k = data1.get(position);
+        final NekoItem k = data1.get(position);
         final String idtemp1 = k.getUuid();
         int p = position;
 
@@ -199,12 +242,6 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         AlertDialog.Builder a_builder = new AlertDialog.Builder(this);
         a_builder.setMessage(R.string.question)
                 .setCancelable(false)
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                })
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -214,23 +251,10 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
                         db.execSQL("DELETE FROM NEKO6_TABLE WHERE uuid = '"+ idtemp1 +"'");
                         db.close();
 
-
-
-                        //Parcelable recyclerViewState;
-                        //recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
-
-                        //final NekoAdapter adapter = new NekoAdapter(data1, (RecyclerViewClickInterface) context);
                         data1.remove(position);
-                        //adapter.notifyItemRangeChanged(0,adapter.getItemCount());
-                        //adapter.notifyDataSetChanged();
-                        //adapter.notifyItemRemoved(position);
 
-                        //recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
 
-                        //LinearLayoutManager manager = new LinearLayoutManager(onDeleteClick4(position));
-                        //manager.setOrientation(LinearLayoutManager.VERTICAL);
-                        // recyclerView.setLayoutManager(manager);
-
+                        //位置保存
                         Parcelable recyclerViewState;
                         recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
 
@@ -242,54 +266,21 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
 
                     }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
                 });
 
         AlertDialog alert = a_builder.create();
         alert.show();
 
-        //画面更新
-        data1.clear();
-        String queryString = "SELECT * FROM " + TABLE_NAME + " ORDER BY dbtime DESC";
-        Cursor cursor = db.rawQuery(queryString, null);
-
-        try {
-            boolean next = cursor.moveToNext();
-            while (next) {
-                String uuid = cursor.getString(1);
-                String body = cursor.getString(2);
-                String dbtime = cursor.getString(4);
-                String favStatus = cursor.getString(3);
-
-                NekoItem newNote = new NekoItem(uuid, body, dbtime, favStatus);
-                data1.add(newNote);
-
-                next = cursor.moveToNext();
-
-            }
-        }finally{
-            cursor.close();
-            db.close();
-        }
-
-
-
-
-        /*
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(manager);
-
-        NekoAdapter adapter = new NekoAdapter(data1, this);
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
-
-         */
-
-
-
-
     }
+
+
+
 
 //------------------------------------------------------------------------------------------
 // Nanmyohorengekyo
