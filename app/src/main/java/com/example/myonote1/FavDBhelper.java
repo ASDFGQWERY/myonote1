@@ -49,16 +49,12 @@ public class FavDBhelper extends SQLiteOpenHelper {
         return db.rawQuery(sql, null,null);
     }
 
-
     // read all data
     public Cursor read_all_data(String uuid) {
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + UUID + "="+uuid+"";
         return db.rawQuery(sql, null,null);
     }
-
-
-
 
 
 

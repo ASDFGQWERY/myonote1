@@ -47,12 +47,15 @@
                 android:id="@+id/image_delete"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
 
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:background="@mipmap/ic_d1_foreground"
                 android:src="@mipmap/ic_d1_foreground"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/favBtn"
@@ -71,16 +74,18 @@
                 android:id="@+id/favStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteY="3dp" />
+                android:layout_marginTop="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toEndOf="@+id/favBtn"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="25dp"
-                tools:srcCompat="@mipmap/ic_empty_foreground" />
+                app:srcCompat="@mipmap/ic_empty_foreground" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

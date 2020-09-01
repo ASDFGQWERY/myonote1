@@ -184,7 +184,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         data1.get(position);
         NekoItem k = data1.get(position);
         //String k = data1.get(3);
-        NekoViewHolder holder;
+        NekoViewHolder holder = null;
         int num = Integer.parseInt(this.data1.get(position).getFavStatus());
 
         switch (num){
@@ -192,23 +192,22 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
                 // UPDATE
                 db.execSQL("update NEKO6_TABLE set favStatus = '2' where uuid = '" + k.getUuid() + "'");
                 k.setFavStatus("2");
-                NekoAdapter.NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l2_foreground);
-                NekoAdapter.NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
+                //holder.favBtn.setBackgroundResource(R.mipmap.ic_l2_foreground);
+                //holder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
                 db.close();
-                //adapter.notifyDataSetChanged();
                 break;
 
             case 2:
                 // UPDATE
                 db.execSQL("update NEKO6_TABLE set favStatus = '1' where uuid = '" + k.getUuid() + "'");
                 k.setFavStatus("1");
-                NekoAdapter.NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l1_foreground);
-                NekoAdapter.NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
+                //holder.favBtn.setBackgroundResource(R.mipmap.ic_l1_foreground);
+                //holder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
                 db.close();
-                //adapter.notifyDataSetChanged();
                 break;
 
         }
+
 
         //位置保存
         Parcelable recyclerViewState;

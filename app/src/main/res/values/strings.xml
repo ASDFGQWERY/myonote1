@@ -11,6 +11,7 @@
     <string name="edit"> EDIT </string>
     <string name="close_app"> CLOSE APP </string>
     <string name="notes"> MY NOTES </string>
+    <string name="create"> _ </string>
 
 
 </resources>

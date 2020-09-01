@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +20,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+import static com.example.myonote1.FavDBhelper.TABLE_NAME;
+import static com.example.myonote1.FavDBhelper.UUID;
 import static java.lang.Integer.parseInt;
 
 public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder> {
@@ -71,22 +72,26 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
         holder.fav_status.setText(this.data1.get(position).getFavStatus());
         holder.dbtime.setText(this.data1.get(position).getDbtime());
         holder.mDeleteImage.setBackgroundResource(R.mipmap.ic_d1_foreground);
+
         //readCursorData(nekoItem, holder);
 
 
-            int num = Integer.parseInt(this.data1.get(position).getFavStatus());
+
+            int num = parseInt(this.data1.get(position).getFavStatus());
             int res_id = IMG_ID.get(num);
-            NekoViewHolder.favBtn.setBackgroundResource(res_id);
-            if (num == 2) {
-                NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
-            } else {
-                NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
+
+            if (num == 1) {
+                holder.favBtn.setBackgroundResource(R.mipmap.ic_l1_foreground);
+                holder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
+            }else {
+                holder.favBtn.setBackgroundResource(R.mipmap.ic_l2_foreground);
+                holder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
             }
+            //int num = Integer.parseInt(this.data1.get(position).getFavStatus());
+
+
 
     }
-
-
-
 
     @Override
     public int getItemCount() {
@@ -99,8 +104,9 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
     public static class NekoViewHolder extends RecyclerView.ViewHolder {
 
 
-        public static Button favBtn;
-        public static View cardView;
+
+        public Button favBtn;
+        public View cardView;
         //private final SQLiteOpenHelper helper = null;
         public ArrayList<NekoItem> data1;
         private final Object NekoViewHolder = null;
@@ -166,9 +172,9 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
     }
 
     /*
-    private void readCursorData(NekoItem nekoItem, RecyclerView.ViewHolder holder){
+    private void readCursorData(@NotNull NekoItem nekoItem, RecyclerView.ViewHolder holder){
         Cursor cursor = helper.read_all_data(nekoItem.getUuid());
-        //SQLiteDatabase db = FavDBhelper.getReadableDatabase();
+        SQLiteDatabase db = helper.getReadableDatabase();
         try {
             boolean next = cursor.moveToNext();
             while (next) {
@@ -197,6 +203,8 @@ public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder
     }
 
      */
+
+
 
 
 }
