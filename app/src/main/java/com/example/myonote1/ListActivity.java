@@ -8,10 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.Parcelable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -44,6 +48,10 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
     private String idtemp;
     NekoAdapter.NekoViewHolder holder;
     Context context;
+
+    private CountDownTimer keyEventTimer;
+    private boolean pressed = false;
+
 
 
 
@@ -119,51 +127,52 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
         NekoAdapter adapter = new NekoAdapter(data1, this);
-        //adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
 
 
-        //recyclerView.getRecycledViewPool().clear();
+        //2度戻るボタンで終了
+        keyEventTimer = new CountDownTimer(500,50){
 
-        /*
-       try {
-            boolean next = cursor.moveToNext();
-            while (next) {
-                String uuid = cursor.getString(1);
-                String body = cursor.getString(2);
-                String dbtime = cursor.getString(4);
-                String favStatus = cursor.getString(3);
-
-                NekoItem newNote = new NekoItem(uuid, body, dbtime, favStatus);
-                data1.add(newNote);
-
-                int position = 0;
-                int num = parseInt(this.data1.get(position).getFavStatus());
-
-                if (num == 2) {
-                    NekoAdapter.NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l2_foreground);
-                    NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
-                } else {
-                    NekoAdapter.NekoViewHolder.favBtn.setBackgroundResource(R.mipmap.ic_l1_foreground);
-                    NekoViewHolder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
-                }
-
-                next = cursor.moveToNext();
+            @Override
+            public void onTick(long millisUntilFinished){
 
             }
-        }finally{
-            cursor.close();
-            db.close();
-        }
 
-         */
+            @Override
+            public void onFinish(){
+                //pressed = false;
+                finishAffinity();
+                System.exit(0);
+            }
 
-        recyclerView.setAdapter(adapter);
+
+        };
+
+
 
 
     }
 
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event){
+        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){
+            if (!pressed){
+                keyEventTimer.start();
+                Toast.makeText(this, "Press back again to quit", Toast.LENGTH_SHORT).show();
+                pressed = true;
+                return false;
+            }
+            return super.dispatchKeyEvent(event);
+        }
+        return super.dispatchKeyEvent(event);
+    }
 
-    //各ボタン処理-------------------------------------------------------------------------------------------
+
+
+
+
+
+        //各ボタン処理-------------------------------------------------------------------------------------------
     //Card押下
     @Override
     public void onItemClick4(int position) {
