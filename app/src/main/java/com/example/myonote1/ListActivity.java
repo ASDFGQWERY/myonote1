@@ -5,13 +5,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.os.Parcelable;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,8 +46,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
     NekoAdapter.NekoViewHolder holder;
     Context context;
 
-    private CountDownTimer keyEventTimer;
-    private boolean pressed = false;
+    private static boolean userPressedBackAgain;
 
 
 
@@ -130,42 +126,35 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         recyclerView.setAdapter(adapter);
 
 
-        //2度戻るボタンで終了
-        keyEventTimer = new CountDownTimer(500,50){
 
+
+    }
+
+    //2度戻るボタンで終了
+    @Override
+    public void onBackPressed(){
+        if (!userPressedBackAgain){
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+            userPressedBackAgain = true;
+        } else {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        new CountDownTimer(2000,100){
             @Override
-            public void onTick(long millisUntilFinished){
+            public void onTick(long millsUntilFinished) {
 
             }
 
             @Override
             public void onFinish(){
-                //pressed = false;
-                finishAffinity();
-                System.exit(0);
+                userPressedBackAgain = false;
             }
-
-
-        };
-
-
-
-
+        }.start();
     }
 
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event){
-        if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){
-            if (!pressed){
-                keyEventTimer.start();
-                Toast.makeText(this, "Press back again to quit", Toast.LENGTH_SHORT).show();
-                pressed = true;
-                return false;
-            }
-            return super.dispatchKeyEvent(event);
-        }
-        return super.dispatchKeyEvent(event);
-    }
 
 
 
