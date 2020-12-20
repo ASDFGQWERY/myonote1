@@ -15,8 +15,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String idtemp = "";
     TextView bodyc;
     private String TABLE_NAME;
+    private Calendar Calender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         // idがregisterのボタンを取得
         Button registerButton = (Button) findViewById(R.id.savc);
         // clickイベント追加
+
         registerButton.setOnClickListener(new View.OnClickListener() {
 
                                               @Override
@@ -66,12 +72,14 @@ public class MainActivity extends AppCompatActivity {
                                                   // データベースに保存する
                                                   SQLiteDatabase db = helper.getWritableDatabase();
 
+
                                                   if (idtemp=="") {
                                                       // 新規作成の場合
                                                       // 新しくuuidを発行する
                                                       idtemp = UUID.randomUUID().toString();
-                                                      // INSERT
-                                                      db.execSQL("insert into NEKO6_TABLE(uuid, body, favStatus, dbtime) VALUES('" + idtemp + "', '" + bodyStr + "', '1' , datetime(CURRENT_TIMESTAMP)) ");
+                                                      // INSERT SQLiteの時間はUTC
+                                                      db.execSQL("insert into NEKO6_TABLE(uuid, body, favStatus, dbtime) VALUES('" + idtemp + "', '" + bodyStr + "', '1' , strftime('%Y-%m-%d %H:%M', CURRENT_TIMESTAMP,'localtime')) ");
+
 
                                                   } else {
                                                       db.execSQL("update NEKO6_TABLE set body = '" + bodyStr + "' where uuid = '" + idtemp + "'");
@@ -79,8 +87,14 @@ public class MainActivity extends AppCompatActivity {
                                                   }
                                                   db.close();
 
+                                                  Toast.makeText(MainActivity.this, getString(R.string.success1), Toast.LENGTH_LONG).show();
+
+
                                               }
-                                          }
+
+
+             }
+
         );
 
 

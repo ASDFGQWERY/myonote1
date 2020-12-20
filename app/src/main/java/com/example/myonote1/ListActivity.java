@@ -74,7 +74,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
 
 
-        //Fabボタン処理
+        //Floating ABボタン処理
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,13 +134,15 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
     @Override
     public void onBackPressed(){
         if (!userPressedBackAgain){
-            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
             userPressedBackAgain = true;
         } else {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finishAffinity();
+            System.exit(0);
         }
         new CountDownTimer(2000,100){
             @Override

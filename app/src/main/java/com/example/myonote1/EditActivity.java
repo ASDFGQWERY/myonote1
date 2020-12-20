@@ -79,6 +79,8 @@ public class EditActivity extends AppCompatActivity {
                 db.execSQL("update NEKO6_TABLE set body = '" + bodyStr + "' where uuid = '" + idtemp + "'");
 
                 db.close();
+
+                Toast.makeText(EditActivity.this, getString(R.string.success1), Toast.LENGTH_LONG).show();
             }
 
         });
