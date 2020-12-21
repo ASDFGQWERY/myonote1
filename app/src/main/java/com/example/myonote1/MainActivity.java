@@ -23,6 +23,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
+import static com.example.myonote1.FavDBhelper.TABLE_NAME;
+
 public class MainActivity extends AppCompatActivity {
     //private ArrayList<NekoItem> nekoItems = new ArrayList<>();
 
@@ -30,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     FavDBhelper helper = null;
     String idtemp = "";
     TextView bodyc;
-    private String TABLE_NAME;
     private Calendar Calender;
 
     @Override
@@ -78,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
                                                       // 新しくuuidを発行する
                                                       idtemp = UUID.randomUUID().toString();
                                                       // INSERT SQLiteの時間はUTC
-                                                      db.execSQL("insert into NEKO6_TABLE(uuid, body, favStatus, dbtime) VALUES('" + idtemp + "', '" + bodyStr + "', '1' , strftime('%Y-%m-%d %H:%M', CURRENT_TIMESTAMP,'localtime')) ");
+                                                      db.execSQL("insert into " + TABLE_NAME + "(uuid, body, favStatus, dbtime) VALUES('" + idtemp + "', '" + bodyStr + "', '1' , strftime('%Y-%m-%d %H:%M', CURRENT_TIMESTAMP,'localtime')) ");
 
 
                                                   } else {
-                                                      db.execSQL("update NEKO6_TABLE set body = '" + bodyStr + "' where uuid = '" + idtemp + "'");
+                                                      db.execSQL("update " + TABLE_NAME + " set body = '" + bodyStr + "' where uuid = '" + idtemp + "'");
 
                                                   }
                                                   db.close();

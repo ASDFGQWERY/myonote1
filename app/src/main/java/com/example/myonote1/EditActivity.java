@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.UUID;
 
+import static com.example.myonote1.FavDBhelper.TABLE_NAME;
+
 public class EditActivity extends AppCompatActivity {
 
     FavDBhelper helper = null;
@@ -43,7 +45,7 @@ public class EditActivity extends AppCompatActivity {
 
         SQLiteDatabase db = helper.getWritableDatabase();
         try {
-            Cursor c = db.rawQuery("select body from NEKO6_TABLE where uuid ='" + idtemp + "'", null);
+            Cursor c = db.rawQuery("select body from "+ TABLE_NAME + " where uuid ='" + idtemp + "'", null);
             boolean next = c.moveToFirst();
             while (next) {
                 String dispBody = c.getString(0);
@@ -76,7 +78,7 @@ public class EditActivity extends AppCompatActivity {
                 // データベースに保存する
                 SQLiteDatabase db = helper.getWritableDatabase();
                 // UPDATE
-                db.execSQL("update NEKO6_TABLE set body = '" + bodyStr + "' where uuid = '" + idtemp + "'");
+                db.execSQL("update "+ TABLE_NAME +" set body = '" + bodyStr + "' where uuid = '" + idtemp + "'");
 
                 db.close();
 

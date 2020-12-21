@@ -190,7 +190,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         switch (num){
             case 1:
                 // UPDATE
-                db.execSQL("update NEKO6_TABLE set favStatus = '2' where uuid = '" + k.getUuid() + "'");
+                db.execSQL("update " + TABLE_NAME + " set favStatus = '2' where uuid = '" + k.getUuid() + "'");
                 k.setFavStatus("2");
                 //holder.favBtn.setBackgroundResource(R.mipmap.ic_l2_foreground);
                 //holder.cardView.setBackgroundColor(Color.parseColor("#ffffe0"));
@@ -199,7 +199,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
             case 2:
                 // UPDATE
-                db.execSQL("update NEKO6_TABLE set favStatus = '1' where uuid = '" + k.getUuid() + "'");
+                db.execSQL("update " + TABLE_NAME + " set favStatus = '1' where uuid = '" + k.getUuid() + "'");
                 k.setFavStatus("1");
                 //holder.favBtn.setBackgroundResource(R.mipmap.ic_l1_foreground);
                 //holder.cardView.setBackgroundColor(Color.parseColor("#ffffff"));
@@ -247,7 +247,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
 
                         SQLiteDatabase db = helper.getWritableDatabase();
-                        db.execSQL("DELETE FROM NEKO6_TABLE WHERE uuid = '"+ idtemp1 +"'");
+                        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE uuid = '"+ idtemp1 +"'");
                         db.close();
 
                         data1.remove(position);
