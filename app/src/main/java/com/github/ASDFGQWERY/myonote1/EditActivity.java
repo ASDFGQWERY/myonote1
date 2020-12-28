@@ -1,4 +1,4 @@
-package com.example.myonote1;
+package com.github.ASDFGQWERY.myonote1;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.UUID;
 
-import static com.example.myonote1.FavDBhelper.TABLE_NAME;
+import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
 
 public class EditActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.myonote1;
+package com.github.ASDFGQWERY.myonote1;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,8 +20,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import static com.example.myonote1.FavDBhelper.TABLE_NAME;
-import static com.example.myonote1.FavDBhelper.UUID;
+import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
+import static com.github.ASDFGQWERY.myonote1.FavDBhelper.UUID;
 import static java.lang.Integer.parseInt;
 
 public class NekoAdapter extends RecyclerView.Adapter<NekoAdapter.NekoViewHolder> {

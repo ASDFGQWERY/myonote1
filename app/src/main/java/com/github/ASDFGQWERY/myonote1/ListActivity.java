@@ -1,4 +1,4 @@
-package com.example.myonote1;
+package com.github.ASDFGQWERY.myonote1;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -30,8 +30,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-import static com.example.myonote1.FavDBhelper.TABLE_NAME;
-import static com.example.myonote1.NekoAdapter.NekoViewHolder;
+import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
+import static com.github.ASDFGQWERY.myonote1.NekoAdapter.NekoViewHolder;
 import static java.lang.Integer.parseInt;
 
 public class ListActivity extends AppCompatActivity implements RecyclerViewClickInterface {

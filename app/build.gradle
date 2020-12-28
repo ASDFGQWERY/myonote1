@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.1"
 
     defaultConfig {
-        applicationId "com.example.myonote1"
+        applicationId "com.github.ASDFGQWERY.myonote1"
         minSdkVersion 29
         targetSdkVersion 30
         versionCode 1

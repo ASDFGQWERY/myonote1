@@ -1,4 +1,4 @@
-package com.example.myonote1;
+package com.github.ASDFGQWERY.myonote1;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,7 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-import static com.example.myonote1.FavDBhelper.TABLE_NAME;
+import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
 
 public class MainActivity extends AppCompatActivity {
     //private ArrayList<NekoItem> nekoItems = new ArrayList<>();

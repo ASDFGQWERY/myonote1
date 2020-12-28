@@ -1,4 +1,4 @@
-package com.example.myonote1;
+package com.github.ASDFGQWERY.myonote1;
 
 import android.view.View;
 
