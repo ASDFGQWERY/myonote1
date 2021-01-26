@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name"> MyNote </string>
+    <string name="app_name" translatable="false"> MyNote </string>
 
-    <string name="question" translatable="false"> Are you sure to delete this? </string>
-    <string name="yes" translatable="false"> Yes </string>
-    <string name="no" translatable="false"> No </string>
+    <string name="question"> Are you sure you want to delete this? </string>
+    <string name="yes"> Yes </string>
+    <string name="no"> No </string>
 
     <string name="new1"> NEW </string>
-    <string name="save" translatable="false"> SAVE </string>
-    <string name="close" translatable="false"> CLOSE </string>
-    <string name="edit" translatable="false"> EDIT </string>
-    <string name="close_app" translatable="false"> CLOSE APP </string>
+    <string name="save"> SAVE </string>
+    <string name="close"> CLOSE </string>
+    <string name="edit"> EDIT </string>
+    <string name="close_app"> CLOSE APP </string>
     <string name="notes"> MY NOTES </string>
-    <string name="create" translatable="false"> Tap to note </string>
-    <string name="success1" translatable="false">Saved successfully</string>
+    <string name="create"> Tap to start </string>
+    <string name="success1">Saved successfully</string>
 
 
 </resources>
