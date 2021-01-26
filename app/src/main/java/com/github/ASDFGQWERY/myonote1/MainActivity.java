@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
+import static android.widget.Toast.makeText;
 import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
 
 public class MainActivity extends AppCompatActivity {

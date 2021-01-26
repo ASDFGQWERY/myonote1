@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">" MyNote "</string>
-    <string name="question" translatable="false"> 確定要刪除？ </string>
+    <string name="question" translatable="false">" 確定要刪除? "</string>
     <string name="yes" translatable="false"> 是 </string>
     <string name="no" translatable="false"> 否 </string>
 
