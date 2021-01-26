@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false"> MyNote </string>
+    <string name="app_name"> MyNote </string>
 
     <string name="question"> Are you sure you want to delete this? </string>
     <string name="yes"> Yes </string>

@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">" MyNote "</string>
+    <string name="app_name">"มายโน๊ต "</string>
+    <string name="question">คุณต้องการที่จะลบโน๊ตใช่ไหม?</string>
+    <string name="yes">"ใช่ "</string>
+    <string name="no">"ไม่ใช่ "</string>
+    <string name="new1">"เพิ่มโน๊ต "</string>
+    <string name="save">"บันทึก "</string>
+    <string name="close">"ปิด "</string>
+    <string name="edit">"แก้ไข "</string>
+    <string name="close_app">"ปิดแอพพลิเคชั่น "</string>
+    <string name="notes">"โน๊ตของฉัน "</string>
+    <string name="create">พิมพ์ข้อความที่นี่</string>
+    <string name="success1">"บันทึกสำเร็จ "</string>
 </resources>

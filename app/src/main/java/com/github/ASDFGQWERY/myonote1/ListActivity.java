@@ -304,5 +304,5 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
 
 //------------------------------------------------------------------------------------------
-// Nanmyohorengekyo
+
 }
