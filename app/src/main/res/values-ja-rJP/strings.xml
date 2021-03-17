@@ -5,6 +5,7 @@
     <string name="yes" translatable="false"> はい </string>
     <string name="no" translatable="false"> いいえ </string>
 
+    <string name="voice"> 音声 </string>
     <string name="new1"> NEW </string>
     <string name="save" translatable="false"> 保存 </string>
     <string name="close" translatable="false"> 閉じる </string>

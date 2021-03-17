@@ -5,6 +5,7 @@
     <string name="yes" translatable="false"> 是 </string>
     <string name="no" translatable="false"> 否 </string>
 
+    <string name="voice"> 語音 </string>
     <string name="new1"> 開啟新筆記 </string>
     <string name="save" translatable="false"> 儲存 </string>
     <string name="close" translatable="false"> 關閉 </string>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -11,8 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.UUID;
 
 import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
@@ -22,16 +28,56 @@ public class EditActivity extends AppCompatActivity {
     FavDBhelper helper = null;
 
     String idtemp;
-    TextView body;
+    EditText body;
+
+    private View floatingActionButton3;
+
+    EditText speachText;
+    private static final int RECOGNIZER_RESULT = 1;
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
+        if(requestCode==RECOGNIZER_RESULT && resultCode == RESULT_OK){
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+            body = findViewById(R.id.body);
+            //bodyc.setText(matches.get(0).toString());
+            body.append(matches.get(0).toString()+"\n");
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-        body = findViewById(R.id.body);
+
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+
+
+        //Floating ABボタン処理(Speech)
+        FloatingActionButton voic = findViewById(R.id.floatingActionButton3);
+        voic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent speachIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                speachIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                speachIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+                startActivityForResult(speachIntent, RECOGNIZER_RESULT);
+            }
+        });
+
+
 
 
         //他人メモ帳
@@ -56,6 +102,11 @@ public class EditActivity extends AppCompatActivity {
         } finally {
             db.close();
         }
+
+
+        body = findViewById(R.id.body);
+        body.setSelection(body.getText().length());
+
 
 
         /**

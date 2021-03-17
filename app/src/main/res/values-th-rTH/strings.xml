@@ -4,6 +4,8 @@
     <string name="question">"คุณต้องการที่จะลบโน้ตใช่ไหม? "</string>
     <string name="yes">"ใช่  "</string>
     <string name="no">"ไม่ใช่ "</string>
+
+    <string name="voice">"เสียง "</string>
     <string name="new1">"เพิ่มโน้ต "</string>
     <string name="save">"บันทึก "</string>
     <string name="close">"ปิด "</string>
