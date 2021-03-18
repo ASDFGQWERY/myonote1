@@ -12,6 +12,6 @@
     <string name="edit" translatable="false"> 編輯 </string>
     <string name="close_app" translatable="false"> 關閉APP </string>
     <string name="notes"> 我的筆記 </string>
-    <string name="create" translatable="false"> 點擊立即開始 </string>
+    <string name="create" translatable="false"> 創建新筆記 </string>
     <string name="success1" translatable="false"> 儲存成功 </string>
 </resources>

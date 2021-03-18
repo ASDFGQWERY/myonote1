@@ -12,7 +12,7 @@
     <string name="edit" translatable="false"> EDIT </string>
     <string name="close_app" translatable="false"> 終了 </string>
     <string name="notes"> MY NOTES </string>
-    <string name="create" translatable="false"> 新規作成 </string>
+    <string name="create" translatable="false"> "新規作成" </string>
     <string name="success1" translatable="false"> 保存しました </string>
 
 </resources>

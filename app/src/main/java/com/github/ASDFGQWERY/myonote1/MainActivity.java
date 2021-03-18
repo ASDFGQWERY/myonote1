@@ -1,13 +1,16 @@
 package com.github.ASDFGQWERY.myonote1;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.speech.RecognizerIntent;
 import android.view.View;
 import android.view.WindowManager;
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText speachText;
     private static final int RECOGNIZER_RESULT = 1;
+    private static boolean userPressedBackAgain;
+
 
 
     @Override
@@ -169,8 +174,36 @@ public class MainActivity extends AppCompatActivity {
                                           }
                                       }
         );
+
+
     }
 
+    //2度戻るボタンで終了
+    @Override
+    public void onBackPressed(){
+        if (!userPressedBackAgain){
+            //Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+            userPressedBackAgain = true;
+        } else {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finishAffinity();
+            System.exit(0);
+        }
+        new CountDownTimer(2000,100){
+            @Override
+            public void onTick(long millsUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish(){
+                userPressedBackAgain = false;
+            }
+        }.start();
+    }
 
 
 
