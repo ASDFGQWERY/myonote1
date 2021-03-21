@@ -8,8 +8,8 @@ android {
         applicationId "com.github.ASDFGQWERY.myonote1"
         minSdkVersion 29
         targetSdkVersion 30
-        versionCode 4
-        versionName "2.1"
+        versionCode 5
+        versionName "2.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
