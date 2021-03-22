@@ -15,7 +15,8 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_collapseMode="pin"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+        tools:layout_editor_absoluteX="70dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -35,12 +36,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="4dp"
         android:background="@drawable/selector"
         android:drawableStart="@android:drawable/ic_menu_close_clear_cancel"
         android:text="@string/close"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/savc"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -49,14 +50,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/selector"
         android:drawableStart="@android:drawable/ic_menu_save"
         android:text="@string/save"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toStartOf="@+id/clsc"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/bodyc"
