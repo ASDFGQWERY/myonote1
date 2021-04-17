@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">блокнот</string>
+
+    <string name="question"> вы обязательно удалите? </string>
+    <string name="yes"> да </string>
+    <string name="no"> Нет </string>
+
+    <string name="new1">НОВЫЙ</string>
+    <string name="save">СОХРАНЯТЬ</string>
+    <string name="close">ЗАКРЫТЬ</string>
+    <string name="edit">Правка</string>
+    <string name="close_app">ВЫХОД</string>
+    <string name="notes">МОИ ЗАМЕТКИ</string>
+    <string name="create">Создать новую заметку</string>
+    <string name="success1">Успешно сохранено!</string>
+
+
+</resources>

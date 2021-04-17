@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Blocco note"</string>
+
+    <string name="question"> Vuoi eliminarlo? </string>
+    <string name="yes"> Sì </string>
+    <string name="no"> No </string>
+
+    <string name="new1">NUOVO</string>
+    <string name="save">SALVA</string>
+    <string name="close">CHIUDI</string>
+    <string name="edit">MODIFICA</string>
+    <string name="close_app">ESCI</string>
+    <string name="notes">I MIEI APPUNTI</string>
+    <string name="create">Crea nuova nota</string>
+    <string name="success1">Salvato con successo!</string>
+    
+
+</resources>

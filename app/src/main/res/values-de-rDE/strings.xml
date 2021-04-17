@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notizblock</string>
+
+    <string name="question">Möchten Sie es löschen?</string>
+    <string name="yes"> Ja </string>
+    <string name="no"> Nein </string>
+
+    <string name="new1">NEU</string>
+    <string name="save">SPEICHERN</string>
+    <string name="close">SCHLIESSEN</string>
+    <string name="edit">BEARBEITEN</string>
+    <string name="close_app">BEENDEN</string>
+    <string name="notes">MEINE NOTIZEN</string>
+    <string name="create">Neue Notiz erstellen</string>
+    <string name="success1">Erfolgreich gespeichert!</string>
+
+</resources>

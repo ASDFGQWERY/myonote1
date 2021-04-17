@@ -47,10 +47,10 @@
                 android:id="@+id/image_delete"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
 
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="6dp"
                 android:background="@mipmap/ic_d1_foreground"
                 android:src="@mipmap/ic_d1_foreground"
                 app:layout_constraintBottom_toBottomOf="parent"

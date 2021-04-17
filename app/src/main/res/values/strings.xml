@@ -5,15 +5,14 @@
     <string name="yes"> Yes </string>
     <string name="no"> No </string>
 
-    <string name="voice"> VOICE </string>
     <string name="new1"> NEW </string>
     <string name="save">SAVE</string>
     <string name="close">CLOSE</string>
     <string name="edit"> EDIT </string>
     <string name="close_app"> CLOSE APP </string>
     <string name="notes"> MY NOTES </string>
-    <string name="create"> Create new note </string>
-    <string name="success1">Saved successfully</string>
+    <string name="create">Create new note</string>
+    <string name="success1">Saved successfully!</string>
 
 
 </resources>

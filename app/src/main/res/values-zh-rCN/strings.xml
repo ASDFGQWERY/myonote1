@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">" MyNote "</string>
+    <string name="app_name">记事本</string>
     <string name="question" translatable="false">确定要删除?</string>
     <string name="yes" translatable="false"> 是 </string>
     <string name="no" translatable="false"> 否 </string>
 
-    <string name="voice"> 语音 </string>
-    <string name="new1">开启新笔记</string>
-    <string name="save" translatable="false"> 储存 </string>
-    <string name="close" translatable="false"> 关闭 </string>
-    <string name="edit" translatable="false"> 编辑 </string>
-    <string name="close_app" translatable="false"> 关闭APP </string>
-    <string name="notes"> 我的笔记 </string>
-    <string name="create" translatable="false"> 创建新笔记 </string>
-    <string name="success1" translatable="false"> 储存成功 </string>
+    <string name="new1">新建</string>
+    <string name="save" translatable="false">保存</string>
+    <string name="close" translatable="false">关闭</string>
+    <string name="edit" translatable="false">编辑</string>
+    <string name="close_app" translatable="false">退出</string>
+    <string name="notes">我的笔记</string>
+    <string name="create" translatable="false">创建新笔记</string>
+    <string name="success1" translatable="false"> 保存成功 </string>
 </resources>

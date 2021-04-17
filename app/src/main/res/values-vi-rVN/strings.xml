@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Sổ tay</string>
+
+    <string name="question"> Bạn có chắc chắn muốn xóa cái này không? </string>
+    <string name="yes"> Đúng </string>
+    <string name="no"> Không </string>
+
+    <string name="new1">MỚI</string>
+    <string name="save">LƯU</string>
+    <string name="close">ĐÓNG</string>
+    <string name="edit">CHỈNH SỬA</string>
+    <string name="close_app">RA</string>
+    <string name="notes">GHI CHÚ CỦA TÔI</string>
+    <string name="create">Tạo ghi chú mới</string>
+    <string name="success1">đã lưu thành công!</string>
+
+
+</resources>

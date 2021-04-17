@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Σημειωματάριο</string>
+
+    <string name="question">Είστε σίγουροι ότι θα διαγράψετε;</string>
+    <string name="yes"> Ναί </string>
+    <string name="no"> Οχι </string>
+
+    <string name="new1">ΝΕΟΣ</string>
+    <string name="save">ΑΠΟΘΉΚΕΥΣΗ</string>
+    <string name="close">ΚΛΕΊΣΙΜΟ</string>
+    <string name="edit">ΕΠΕΞΕΡΓΑΣΙΑ</string>
+    <string name="close_app">ΈΞΟΔΟΣ</string>
+    <string name="notes">ΟΙ ΣΗΜΕΙΩΣΕΙΣ ΜΟΥ</string>
+    <string name="create">Δημιουργήστε νέο</string>
+    <string name="success1">Αποθηκεύτηκε επιτυχώς!</string>
+
+</resources>

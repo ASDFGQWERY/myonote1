@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -145,7 +147,12 @@ public class MainActivity extends AppCompatActivity {
                                                   }
                                                   db.close();
 
-                                                  Toast.makeText(MainActivity.this, getString(R.string.success1), Toast.LENGTH_LONG).show();
+                                                  Toast t1 = Toast.makeText(getApplicationContext(), getString(R.string.success1), Toast.LENGTH_LONG);
+                                                  View v1 = t1.getView();
+                                                  v1.getBackground().setColorFilter(Color.rgb(152,251,152), PorterDuff.Mode.SRC_IN);
+                                                  t1.show();
+
+
 
 
                                               }

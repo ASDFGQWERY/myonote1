@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kladblok</string>
+
+    <string name="question">Weet je zeker dat je dit wilt verwijderen?</string>
+    <string name="yes"> Ja </string>
+    <string name="no"> Nee </string>
+
+    <string name="new1">NIEUW</string>
+    <string name="save"> OPSLAAN </string>
+    <string name="close">SLUITEN</string>
+    <string name="edit">BEWERKEN</string>
+    <string name="close_app">AUSLUITEN</string>
+    <string name="notes">MIJN NOTITIES</string>
+    <string name="create">Maak nieuw</string>
+    <string name="success1">Met succes opgeslagen!</string>
+
+</resources>
