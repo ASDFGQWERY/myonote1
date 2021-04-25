@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1024205146682",
+    "project_id": "myonote1",
+    "storage_bucket": "myonote1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024205146682:android:cf3374630a7d3500450303",
+        "android_client_info": {
+          "package_name": "com.github.ASDFGQWERY.myonote1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024205146682-tpt5vo031t46df8jfrnvfd3sb1a13la3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtremfJwK7FBEyrJnfRbS9Fwanelmgerc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024205146682-tpt5vo031t46df8jfrnvfd3sb1a13la3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
