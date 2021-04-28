@@ -14,5 +14,6 @@
     <string name="notes">ΟΙ ΣΗΜΕΙΩΣΕΙΣ ΜΟΥ</string>
     <string name="create">Δημιουργήστε νέο</string>
     <string name="success1">Αποθηκεύτηκε επιτυχώς!</string>
+    <string name="move1">Θέλετε να κλείσετε χωρίς αποθήκευση;</string>
 
 </resources>

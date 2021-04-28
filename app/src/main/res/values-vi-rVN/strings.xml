@@ -14,6 +14,6 @@
     <string name="notes">GHI CHÚ CỦA TÔI</string>
     <string name="create">Tạo ghi chú mới</string>
     <string name="success1">đã lưu thành công!</string>
-
+    <string name="move1">Bạn có muốn đóng mà không lưu không?</string>
 
 </resources>

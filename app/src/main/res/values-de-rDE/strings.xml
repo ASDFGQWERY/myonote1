@@ -14,5 +14,6 @@
     <string name="notes">MEINE NOTIZEN</string>
     <string name="create">Neue Notiz erstellen</string>
     <string name="success1">Erfolgreich gespeichert!</string>
+    <string name="move1">Möchten Sie schließen, ohne zu speichern?</string>
 
 </resources>

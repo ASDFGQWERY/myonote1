@@ -13,5 +13,6 @@
     <string name="notes"> MY NOTES </string>
     <string name="create"> "新規作成" </string>
     <string name="success1"> 保存しました </string>
+    <string name="move1">保存しないで閉じますか?</string>
 
 </resources>

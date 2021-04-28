@@ -14,5 +14,6 @@
     <string name="notes">MIJN NOTITIES</string>
     <string name="create">Maak nieuw</string>
     <string name="success1">Met succes opgeslagen!</string>
+    <string name="move1">Wilt u afsluiten zonder op te slaan?</string>
 
 </resources>

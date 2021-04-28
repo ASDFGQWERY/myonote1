@@ -14,6 +14,7 @@
     <string name="notes">I MIEI APPUNTI</string>
     <string name="create">Crea nuova nota</string>
     <string name="success1">Salvato con successo!</string>
+    <string name="move1">Vuoi chiudere senza salvare?</string>
     
 
 </resources>

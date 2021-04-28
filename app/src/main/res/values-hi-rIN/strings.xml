@@ -14,5 +14,7 @@
     <string name="notes">मेरी टिप्पणियाँ</string>
     <string name="create">नया बनाओ</string>
     <string name="success1">सफलतापूर्वक बचाया!</string>
+    <string name="move1">क्या आप बिना बचत के बंद करना चाहते हैं?</string>
+
 
 </resources>

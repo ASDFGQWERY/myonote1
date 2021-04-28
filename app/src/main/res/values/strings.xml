@@ -13,7 +13,7 @@
     <string name="notes"> MY NOTES </string>
     <string name="create">Create new note</string>
     <string name="success1">Saved successfully!</string>
-    <string name="move1">Do you close without saving?</string>
+    <string name="move1">Do you want to close without saving?</string>
 
 
 </resources>
