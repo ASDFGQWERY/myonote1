@@ -30,7 +30,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/selector"
-        android:drawableStart="@android:drawable/ic_menu_close_clear_cancel"
+        android:drawableStart="@drawable/ic_action_ext"
         android:text="@string/close_app"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/myToolBar"

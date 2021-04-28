@@ -2,22 +2,29 @@ package com.github.ASDFGQWERY.myonote1;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Parcelable;
 import android.speech.RecognizerIntent;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +35,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.UUID;
 
+import static android.widget.Toast.LENGTH_SHORT;
 import static android.widget.Toast.makeText;
 import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
 
@@ -42,13 +50,14 @@ public class MainActivity extends AppCompatActivity {
     String txt;
     private Calendar Calender;
     private View floatingActionButton2;
+    Integer num1=0;
 
     EditText speachText;
     private static final int RECOGNIZER_RESULT = 1;
     private static boolean userPressedBackAgain;
 
 
-
+    //音声処理1
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
@@ -147,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                                                   }
                                                   db.close();
 
-                                                  Toast t1 = Toast.makeText(getApplicationContext(), getString(R.string.success1), Toast.LENGTH_LONG);
+                                                  Toast t1 = Toast.makeText(getApplicationContext(), getString(R.string.success1), LENGTH_SHORT);
                                                   View v1 = t1.getView();
                                                   v1.getBackground().setColorFilter(Color.rgb(152,251,152), PorterDuff.Mode.SRC_IN);
                                                   t1.show();
@@ -165,21 +174,117 @@ public class MainActivity extends AppCompatActivity {
 
 
         /**
-         * 戻るボタン処理
+         * 閉じるボタン処理
          */
-        // idがbackのボタンを取得
-        Button backButton = (Button) findViewById(R.id.clsc);
+        // idがcloseのボタンを取得
+        Button closeButton = (Button) findViewById(R.id.clsc);
         // clickイベント追加
-        backButton.setOnClickListener(new View.OnClickListener() {
+        closeButton.setOnClickListener(new View.OnClickListener() {
 
-                                          @Override
+
+
+                                           @Override
                                           public void onClick(View v) {
-                                              // 保存せずに一覧へ戻る
-                                              // 保存後に一覧へ戻る
-                                              Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                                              startActivity(intent);
-                                          }
-                                      }
+
+                                               //空っぽの場合
+                                               EditText body2 = (EditText) findViewById(R.id.bodyc);
+                                               String bodyStr2 = body2.getText().toString();
+                                               //String crt=getString(R.string.create);
+
+                                                //IDがない場合（変更なし）
+                                               if (idtemp.equals("") && TextUtils.isEmpty(bodyStr2)) {
+                                                   Intent intent2 = new Intent(MainActivity.this, ListActivity.class);
+                                                   startActivity(intent2);
+                                               }
+
+
+                                               //IDがない場合（変更あり）
+                                               if (idtemp.equals("") && !TextUtils.isEmpty(bodyStr2)) {
+
+                                                   // 保存しなくていいか聞く
+                                                   AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
+                                                   a_builder.setMessage(R.string.move1)
+                                                           .setCancelable(false)
+                                                           .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                                               @Override
+                                                               public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                                   // 一覧へ
+                                                                   Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                                                                   startActivity(intent);
+
+
+                                                               }
+                                                           })
+                                                           .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                                               @Override
+                                                               public void onClick(DialogInterface dialogInterface, int i) {
+                                                                   // キャンセルしてそのまま
+                                                                   dialogInterface.cancel();
+                                                               }
+                                                           });
+
+                                                   AlertDialog alert = a_builder.create();
+                                                   alert.show();
+
+                                               }
+
+                                               //IDがある場合
+                                               if (!idtemp.equals("")) {
+
+                                                   SQLiteDatabase db = helper.getReadableDatabase();
+                                                   try {
+                                                       Cursor c = db.rawQuery("select body from " + TABLE_NAME + " where uuid ='" + idtemp + "'", null);
+                                                       boolean next = c.moveToFirst();
+                                                       while (next) {
+                                                           String dispBody2 = c.getString(0);
+                                                           next = c.moveToNext();
+
+                                                           //内容が同じ場合
+                                                           if (bodyStr2.equals(dispBody2)) {
+                                                               Intent intent2 = new Intent(MainActivity.this, ListActivity.class);
+                                                               startActivity(intent2);
+
+                                                           } else {
+                                                               //内容が違う場合
+                                                               // 保存しなくていいか聞く
+                                                               AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
+                                                               a_builder.setMessage(R.string.move1)
+                                                                       .setCancelable(false)
+                                                                       .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                                                           @Override
+                                                                           public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                                               // 一覧へ
+                                                                               Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                                                                               startActivity(intent);
+
+                                                                           }
+                                                                       })
+                                                                       .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                                                           @Override
+                                                                           public void onClick(DialogInterface dialogInterface, int i) {
+                                                                               // キャンセルしてそのまま
+                                                                               dialogInterface.cancel();
+                                                                           }
+                                                                       });
+
+                                                               AlertDialog alert = a_builder.create();
+                                                               alert.show();
+
+                                                           }
+                                                       }
+
+
+                                                           } finally {
+                                                            db.close();
+                                                           }
+
+
+                                                   }
+                                           }
+
+        }
         );
 
 

@@ -1,5 +1,6 @@
 package com.github.ASDFGQWERY.myonote1;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -135,7 +137,7 @@ public class EditActivity extends AppCompatActivity {
 
                 db.close();
 
-                Toast t1 = Toast.makeText(getApplicationContext(), getString(R.string.success1), Toast.LENGTH_LONG);
+                Toast t1 = Toast.makeText(getApplicationContext(), getString(R.string.success1), Toast.LENGTH_SHORT);
                 View v1 = t1.getView();
                 v1.getBackground().setColorFilter(Color.rgb(152,251,152), PorterDuff.Mode.SRC_IN);
                 t1.show();
@@ -148,22 +150,68 @@ public class EditActivity extends AppCompatActivity {
          * 戻るボタン処理
          */
         // idがbackのボタンを取得
-        Button backButton = (Button) findViewById(R.id.cls);
+        Button closeButton = (Button) findViewById(R.id.cls);
         // clickイベント追加
-        backButton.setOnClickListener(new View.OnClickListener() {
+        closeButton.setOnClickListener(new View.OnClickListener() {
 
                                           @Override
                                           public void onClick(View v) {
-                                              // 保存せずに一覧へ戻る
-                                              // 保存後に一覧へ戻る
-                                              Intent intent = new Intent(EditActivity.this, ListActivity.class);
-                                              startActivity(intent);
+
+                                              EditText body3 = (EditText) findViewById(R.id.body);
+                                              String bodyStr3 = body3.getText().toString();
+
+
+                                              SQLiteDatabase db = helper.getReadableDatabase();
+                                              try {
+                                                  Cursor c = db.rawQuery("select body from " + TABLE_NAME + " where uuid ='" + idtemp + "'", null);
+                                                  boolean next = c.moveToFirst();
+                                                  while (next) {
+                                                      String dispBody3 = c.getString(0);
+                                                      next = c.moveToNext();
+
+                                                      //内容が同じ場合
+                                                      if (bodyStr3.equals(dispBody3)) {
+                                                          Intent intent3 = new Intent(EditActivity.this, ListActivity.class);
+                                                          startActivity(intent3);
+
+                                                      } else {
+                                                          //内容が違う場合
+                                                          // 保存しなくていいか聞く
+                                                          AlertDialog.Builder a_builder = new AlertDialog.Builder(EditActivity.this);
+                                                          a_builder.setMessage(R.string.move1)
+                                                                  .setCancelable(false)
+                                                                  .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                                                      @Override
+                                                                      public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                                          // 一覧へ
+                                                                          Intent intent4 = new Intent(EditActivity.this, ListActivity.class);
+                                                                          startActivity(intent4);
+
+                                                                      }
+                                                                  })
+                                                                  .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                                                      @Override
+                                                                      public void onClick(DialogInterface dialogInterface, int i) {
+                                                                          // キャンセルしてそのまま
+                                                                          dialogInterface.cancel();
+                                                                      }
+                                                                  });
+
+                                                          AlertDialog alert = a_builder.create();
+                                                          alert.show();
+
+                                                      }
+                                                  }
+
+                                              }finally {
+                                                  db.close();
+                                              }
                                           }
-                                      }
-        );
 
 
 
-    }
 
-}
+    });
+
+}}
