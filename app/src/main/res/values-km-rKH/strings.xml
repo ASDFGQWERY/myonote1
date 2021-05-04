@@ -15,5 +15,6 @@
     <string name="create">បង្កើត​ថ្មី</string>
     <string name="success1">បានរក្សាទុកដោយជោគជ័យ!</string>
     <string name="move1">តើអ្នកចង់បិទដោយមិនរក្សាទុកទេ?</string>
+    <string name="nodata1">គ្មាន​ទិន្នន័យ</string>
 
 </resources>

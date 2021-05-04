@@ -15,6 +15,7 @@
     <string name="create">Создать новую заметку</string>
     <string name="success1">Успешно сохранено!</string>
     <string name="move1">Вы хотите закрыть без сохранения?</string>
+    <string name="nodata1">Нет данных</string>
 
 
 </resources>

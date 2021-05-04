@@ -15,5 +15,6 @@
     <string name="create">Δημιουργήστε νέο</string>
     <string name="success1">Αποθηκεύτηκε επιτυχώς!</string>
     <string name="move1">Θέλετε να κλείσετε χωρίς αποθήκευση;</string>
+    <string name="nodata1">Χωρίς δεδομένα</string>
 
 </resources>

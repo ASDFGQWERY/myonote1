@@ -4,16 +4,23 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Parcelable;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,27 +28,43 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
 import static com.github.ASDFGQWERY.myonote1.NekoAdapter.NekoViewHolder;
 import static java.lang.Integer.parseInt;
+import static java.lang.String.format;
 
 public class ListActivity extends AppCompatActivity implements RecyclerViewClickInterface {
 
     //黒画面のRecycler Viewから-san
 
+    private final static String TAG = "Banner";
+    private FrameLayout adContainerView;
+    private AdView adView;
+
     RecyclerView recyclerView;
     private FavDBhelper helper = null;
     private EditText body = null;
     private EditText dbtime = null;
+    private String dbtim = null;
     private Button flag;
     private View floatingActionButton;
     public ArrayList<NekoItem> data1 = new ArrayList<>();
@@ -92,9 +115,51 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
 
         //広告バナー表示
+        adContainerView =findViewById(R.id.id_FrameLayout);
+        adContainerView.setVisibility(View.GONE);
+        adView = new AdView(this);
+        adView.setAdUnitId(getString(R.string.adaptive_banner_ad_unit_id));
+        adView.setAdSize(adSize());
+        adContainerView.addView(adView);
+
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                //super.onAdFailedToLoad(loadAdError);
+                Log.d(TAG,"Loading banner is failed");
+                adContainerView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                //super.onAdLoaded();
+                Log.d(TAG,"Banner is loaded");
+                adContainerView.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        // Initialize the Mobile Ads SDK.
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
+                loadBanner();
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+        /*旧バナー
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(@NotNull InitializationStatus initializationStatus) {
             }
         });
 
@@ -102,6 +167,8 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+
+         */
 
 
 
@@ -111,8 +178,10 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
 
         //初期読み込みインド人
-        helper = new FavDBhelper(this);
+        FavDBhelper helper = new FavDBhelper(this);
+
         //黒画面
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         String queryString = "SELECT * FROM " + TABLE_NAME + " ORDER BY dbtime DESC";
         SQLiteDatabase db = helper.getWritableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
@@ -122,19 +191,32 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
             while (next) {
                 String uuid = cursor.getString(1);
                 String body = cursor.getString(2);
-                String dbtime = cursor.getString(4);
+                String dbtim = cursor.getString(4);
                 String favStatus = cursor.getString(3);
 
+                String dbtime = dbtim.substring(0,16);
                 NekoItem newNote = new NekoItem(uuid, body, dbtime, favStatus);
                 data1.add(newNote);
-
                 next = cursor.moveToNext();
 
+
+                // データが何もない場合
+                long recodeCount = DatabaseUtils.queryNumEntries(db, TABLE_NAME);
+                if(recodeCount!=0) {
+                    TextView exampleView = (TextView) findViewById(R.id.nodata1);
+                    exampleView.setVisibility(View.GONE);
+                } else {
+                    TextView exampleView = (TextView) findViewById(R.id.nodata1);
+                    exampleView.setVisibility(View.VISIBLE);
+                }
+
             }
-        }finally{
+        } finally{
             cursor.close();
             db.close();
         }
+
+
 
 
         //リスト配置
@@ -151,6 +233,27 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
 
     }
+
+    private void loadBanner() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+    }
+
+    private AdSize adSize() {
+        // Step 2 - Determine the screen width (less decorations) to use for the ad width.
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float widthPixels = outMetrics.widthPixels;
+        float density = outMetrics.density;
+
+        int adWidth = (int) (widthPixels / density);
+
+        // Step 3 - Get adaptive ad size and return for setting on the ad view.
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
+    }
+
 
     //2度戻るボタンで終了
     @Override

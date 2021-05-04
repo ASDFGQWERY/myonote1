@@ -14,6 +14,8 @@
     <string name="create">Create new note</string>
     <string name="success1">Saved successfully!</string>
     <string name="move1">Do you want to close without saving?</string>
+    <string name="nodata1">No data</string>
+    <string name="adaptive_banner_ad_unit_id" translatable="false">ca-app-pub-2784387996203928/8589132380</string>
 
 
 </resources>

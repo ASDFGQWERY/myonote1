@@ -14,5 +14,6 @@
     <string name="create">"สร้างบันทึกใหม่ "</string>
     <string name="success1">"บันทึกสำเร็จ "</string>
     <string name="move1">คุณต้องการปิดโดยไม่บันทึกหรือไม่?</string>
+    <string name="nodata1">ไม่มีข้อมูล</string>
 
 </resources>

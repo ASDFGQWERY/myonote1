@@ -133,7 +133,10 @@ public class EditActivity extends AppCompatActivity {
                 // データベースに保存する
                 SQLiteDatabase db = helper.getWritableDatabase();
                 // UPDATE
-                db.execSQL("update "+ TABLE_NAME +" set body = '" + bodyStr + "' where uuid = '" + idtemp + "'");
+                db.execSQL("update " + TABLE_NAME + " set body = '" + bodyStr + "' where uuid = '" + idtemp + "'");
+                db.execSQL("update " + TABLE_NAME + " set dbtime = strftime('%Y-%m-%d %H:%M:%S', CURRENT_TIMESTAMP,'localtime') where uuid = '" + idtemp + "'");
+
+
 
                 db.close();
 

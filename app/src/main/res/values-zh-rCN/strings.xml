@@ -14,5 +14,6 @@
     <string name="create" translatable="false">创建新笔记</string>
     <string name="success1" translatable="false"> 保存成功 </string>
     <string name="move1">您要不保存就关闭吗？</string>
+    <string name="nodata1">没有数据</string>
 
 </resources>

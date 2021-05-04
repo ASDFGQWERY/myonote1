@@ -15,5 +15,6 @@
     <string name="create">Crear nuevo nota</string>
     <string name="success1">¡Guardado exitosamente!</string>
     <string name="move1">¿Quieres cerrar sin guardar?</string>
+    <string name="nodata1">Sin datos</string>
 
 </resources>

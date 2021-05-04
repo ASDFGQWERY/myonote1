@@ -15,5 +15,6 @@
     <string name="create">Maak nieuw</string>
     <string name="success1">Met succes opgeslagen!</string>
     <string name="move1">Wilt u afsluiten zonder op te slaan?</string>
+    <string name="nodata1">Geen informatie</string>
 
 </resources>

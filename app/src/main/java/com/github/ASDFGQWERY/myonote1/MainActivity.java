@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     String idtemp = "";
     EditText txtemp;
     EditText bodyc;
+
     String txt;
     private Calendar Calender;
     private View floatingActionButton2;
@@ -147,7 +148,9 @@ public class MainActivity extends AppCompatActivity {
                                                       // 新しくuuidを発行する
                                                       idtemp = UUID.randomUUID().toString();
                                                       // INSERT SQLiteの時間はUTC
-                                                      db.execSQL("insert into " + TABLE_NAME + "(uuid, body, favStatus, dbtime) VALUES('" + idtemp + "', '" + bodyStr + "', '1' , strftime('%Y-%m-%d %H:%M', CURRENT_TIMESTAMP,'localtime')) ");
+                                                      //db.execSQL("insert into " + TABLE_NAME + "(uuid, body, favStatus, dbtime) VALUES('" + idtemp + "', '" + bodyStr + "', '1' , datetime('now', 'localtime')) ");
+                                                      db.execSQL("insert into " + TABLE_NAME + "(uuid, body, favStatus, dbtime) VALUES('" + idtemp + "', '" + bodyStr + "', '1' , strftime('%Y-%m-%d %H:%M:%S', CURRENT_TIMESTAMP,'localtime')) ");
+
 
 
                                                   } else {

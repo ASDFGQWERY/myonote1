@@ -43,13 +43,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="60dp"
-        app:layout_constraintBottom_toTopOf="@id/adView"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginBottom="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/id_FrameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -61,7 +61,7 @@
         android:clickable="true"
         android:focusable="auto"
         app:backgroundTint="@color/FabOrange"
-        app:layout_constraintBottom_toTopOf="@id/adView"
+        app:layout_constraintBottom_toTopOf="@+id/id_FrameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_outline_add_24" />
 
@@ -77,15 +77,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/myToolBar" />
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+
+    <TextView
+        android:id="@+id/nodata1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-2784387996203928/8589132380"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="29dp"
+        android:text="@string/nodata1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myToolBar" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_FrameLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 
