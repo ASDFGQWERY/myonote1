@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.UUID;
 
+import static android.widget.Toast.LENGTH_SHORT;
 import static com.github.ASDFGQWERY.myonote1.FavDBhelper.TABLE_NAME;
 
 public class EditActivity extends AppCompatActivity {
@@ -140,10 +141,10 @@ public class EditActivity extends AppCompatActivity {
 
                 db.close();
 
-                Toast t1 = Toast.makeText(getApplicationContext(), getString(R.string.success1), Toast.LENGTH_SHORT);
-                View v1 = t1.getView();
-                v1.getBackground().setColorFilter(Color.rgb(152,251,152), PorterDuff.Mode.SRC_IN);
-                t1.show();
+                Toast.makeText(getApplicationContext(), getString(R.string.success1), LENGTH_SHORT).show();
+                //View v1 = t1.getView();
+                //v1.getBackground().setColorFilter(Color.rgb(152,251,152), PorterDuff.Mode.SRC_IN);
+                //t1.show();
             }
 
         });

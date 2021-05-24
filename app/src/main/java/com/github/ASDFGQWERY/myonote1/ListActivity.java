@@ -95,11 +95,17 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
             @Override
             public void onClick(View view) {
 
+                //moveTaskToBack(true);
+                //finishAffinity();
+                //System.exit(0);
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 finishAffinity();
                 System.exit(0);
             }
         });
-
 
 
         //Floating ABボタン処理
@@ -114,49 +120,9 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         });
 
 
-        //広告バナー表示
-        adContainerView =findViewById(R.id.id_FrameLayout);
-        adContainerView.setVisibility(View.GONE);
-        adView = new AdView(this);
-        adView.setAdUnitId(getString(R.string.adaptive_banner_ad_unit_id));
-        adView.setAdSize(adSize());
-        adContainerView.addView(adView);
-
-        adView.setAdListener(new AdListener() {
-            @Override
-            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                //super.onAdFailedToLoad(loadAdError);
-                Log.d(TAG,"Loading banner is failed");
-                adContainerView.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAdLoaded() {
-                //super.onAdLoaded();
-                Log.d(TAG,"Banner is loaded");
-                adContainerView.setVisibility(View.VISIBLE);
-            }
-        });
-
-
-        // Initialize the Mobile Ads SDK.
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-                loadBanner();
-            }
-        });
-
-
-
-
-
-
-
-
-
-
         /*旧バナー
+        --------------------------------------------------------------------------------------------------------
+
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(@NotNull InitializationStatus initializationStatus) {
@@ -168,22 +134,19 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
+--------------------------------------------------------------------------------------------------------
          */
 
 
 
 
-
-
-
-
         //初期読み込みインド人
-        FavDBhelper helper = new FavDBhelper(this);
+        helper = new FavDBhelper(this);
 
         //黒画面
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         String queryString = "SELECT * FROM " + TABLE_NAME + " ORDER BY dbtime DESC";
-        SQLiteDatabase db = helper.getWritableDatabase();
+        SQLiteDatabase db = helper.getReadableDatabase();
         Cursor cursor = db.rawQuery(queryString, null);
 
         try {
@@ -232,14 +195,61 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
 
 
 
+        //広告バナー表示
+        // Initialize the Mobile Ads SDK.
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        //MobileAds.initialize(this);
+        adContainerView =findViewById(R.id.id_FrameLayout);
+        adContainerView.setVisibility(View.GONE);
+        adView = new AdView(this);
+        adView.setAdUnitId(getString(R.string.adaptive_banner_ad_unit_id));
+        //AdSize adSize = getAdSize();
+        //adView.setAdSize(adSize);
+        adContainerView.addView(adView);
+        loadBanner();
+
+        //AdRequest adRequest = new AdRequest.Builder().build();
+        //adView.loadAd(adRequest);
+
+
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                //super.onAdFailedToLoad(loadAdError);
+                //Log.d(TAG,"Loading banner is failed");
+                adContainerView.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                //super.onAdLoaded();
+                //Log.d(TAG,"Banner is loaded");
+                adContainerView.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+
+
     }
 
+
+    //広告メソッド
     private void loadBanner() {
         AdRequest adRequest = new AdRequest.Builder().build();
+        AdSize adSize = getAdSize();
+        adView.setAdSize(adSize);
         adView.loadAd(adRequest);
     }
 
-    private AdSize adSize() {
+
+    private AdSize getAdSize() {
         // Step 2 - Determine the screen width (less decorations) to use for the ad width.
         Display display = getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -253,6 +263,7 @@ public class ListActivity extends AppCompatActivity implements RecyclerViewClick
         // Step 3 - Get adaptive ad size and return for setting on the ad view.
         return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
     }
+
 
 
     //2度戻るボタンで終了

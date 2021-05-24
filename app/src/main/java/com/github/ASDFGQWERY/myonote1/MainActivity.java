@@ -159,10 +159,10 @@ public class MainActivity extends AppCompatActivity {
                                                   }
                                                   db.close();
 
-                                                  Toast t1 = Toast.makeText(getApplicationContext(), getString(R.string.success1), LENGTH_SHORT);
-                                                  View v1 = t1.getView();
-                                                  v1.getBackground().setColorFilter(Color.rgb(152,251,152), PorterDuff.Mode.SRC_IN);
-                                                  t1.show();
+                                                  Toast.makeText(getApplicationContext(), getString(R.string.success1), LENGTH_SHORT).show();
+                                                  //View v1 = t1.getView();
+                                                  //v1.getBackground().setColorFilter(Color.rgb(152,251,152), PorterDuff.Mode.SRC_IN);
+                                                  //t1.show();
 
 
 
